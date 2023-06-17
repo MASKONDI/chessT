@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "e03d5d5c-cd8f-407d-aea1-78b547b1c4d1",
+		"name": "ChessT-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5428896"
+	},
+	"item": [
+		{
+			"name": "UploadPdfContract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/TechM Project/ChessMenia/Players Contract - WGS 2021.pdf"
+						},
+						{
+							"key": "contractType",
+							"value": "Team",
+							"type": "text"
+						},
+						{
+							"key": "teamName",
+							"value": "GCL",
+							"type": "text"
+						},
+						{
+							"key": "uploadedBy",
+							"value": "Askaiakakakaka",
+							"type": "text"
+						},
+						{
+							"key": "recordDate",
+							"value": "13-06-2023",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "pending",
+							"type": "text"
+						},
+						{
+							"key": "actionBy",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "actionDate",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "contractWith",
+							"value": "Ashish",
+							"type": "text"
+						},
+						{
+							"key": "playerName",
+							"value": "Player1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sponserName",
+							"value": "Sponserr1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vendorName",
+							"value": "Vendor1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contractList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/contractList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"contractList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetchContract",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/fetchContract/73e76daf22150b2e4683189496dc01c3bc4d4aa825d8edac170548320b2b39f4.docx",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetchContract",
+						"73e76daf22150b2e4683189496dc01c3bc4d4aa825d8edac170548320b2b39f4.docx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateContractStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"contractId\":\"d931e1da9c8b4ba3\",\r\n    \"ContractType\":\"Team\",\r\n    \"status\":\"approved\",\r\n    \"comment\":\"krishna\",\r\n    \"actionBy\":\"Krishna2\",\r\n    \"actionDate\":\"16-06-2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/updateContractStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updateContractStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"pmo\",\r\n    \"password\":\"1234\",\r\n    \"role\":\"pmo\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPlayerList",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getTeamsList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getTeamsList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getTeamsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Records",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

@@ -8,8 +8,8 @@ const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const gclteams = require("./gclteams.json");
 
-const { BlockchainUtils } = require('./blockchainutils/blockchainutils');
-const blockchainUtils = new BlockchainUtils();
+//const { BlockchainUtils } = require('./blockchainutils/blockchainutils');
+//const blockchainUtils = new BlockchainUtils();
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 
 const uri = "mongodb+srv://maskondi2000:krishna1234@cluster0.6gtuone.mongodb.net/?retryWrites=true&w=majority";
 const dbName ='ChessT';
-
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -92,17 +91,17 @@ app.post("/upload", upload.single("file"), (req, res) => {
       actionDate:req.body.actionDate,
       comment:req.body.comment,
     };
-    // client.db(dbName).collection('ContractDetails')
-    // .insertOne(contractDetails)
-    // .then(() => {
-    //   res.status(200).json({ message: "Contract created successfully" , filename: fileName });
-    // })
-    // .catch((error) => {
-    //   console.error('Error uploading data:', error);
-    //   res.status(500).send('Internal Server Error');
-    // });
+    client.db(dbName).collection('ContractDetails')
+    .insertOne(contractDetails)
+    .then(() => {
+      res.status(200).json({ message: "Contract created successfully" , filename: fileName });
+    })
+    .catch((error) => {
+      console.error('Error uploading data:', error);
+      res.status(500).send('Internal Server Error');
+    });
     console.log("**************************contractDetails********",contractDetails);
-    addTeamContract(contractDetails);
+    //addTeamContract(contractDetails);
   }
   if (req.body.contractType == "Player") {
     
@@ -129,7 +128,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
       console.error('Error uploading data:', error);
       res.status(500).send('Internal Server Error');
     });
-    addPlayerContract(contractDetails);
+    //addPlayerContract(contractDetails);
   }
   if (req.body.contractType == "Sponser") {
   
@@ -155,7 +154,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
       console.error('Error uploading data:', error);
       res.status(500).send('Internal Server Error');
     });
-    addSponserContract(contractDetails);
+    //addSponserContract(contractDetails);
   }
   if (req.body.contractType == "Vendor") {
     contractDetails = {
@@ -180,15 +179,15 @@ app.post("/upload", upload.single("file"), (req, res) => {
       console.error('Error uploading data:', error);
       res.status(500).send('Internal Server Error');
     });
-    addVendorContract(contractDetails);
+    //addVendorContract(contractDetails);
   }
   fileName = req.file.filename;
 
-  if (req.file) {
-    res.status(200).json({ message: "Contract created successfully" , filename: fileName });
-  } else {
-    res.status(400).json({ error: "No file provided" });
-  }
+  // if (req.file) {
+  //   res.status(200).json({ message: "Contract created successfully" , filename: fileName });
+  // } else {
+  //   res.status(400).json({ error: "No file provided" });
+  // }
 });
 
 
@@ -240,52 +239,21 @@ app.post("/login", (req, res) => {
 
 app.get("/contractList", async (req, res) => {
 
-  // client.db(dbName).collection('ContractDetails')
-  //       .find({})
-  //       .toArray()
-  //       .then((records) => {
-  //         console.log("JSON Records",records);
-  //         res.status(200).json(records);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error fetching records:', error);
-  //         res.status(500).send('Internal Server Error');
-  //       });
-  // //************query to fetch all */
+  client.db(dbName).collection('ContractDetails')
+        .find({})
+        .toArray()
+        .then((records) => {
+          console.log("JSON Records",records);
+          res.status(200).json(records);
+        })
+        .catch((error) => {
+          console.error('Error fetching records:', error);
+          res.status(500).send('Internal Server Error');
+        });
+  //************query to fetch all */
 
-   var data1 =  await GetData();    
-    res.json(data1);;
-
-  const contractList = [
-    {
-      contractFile:
-        "87ca35fb9232e51828be8db983076562394c37172ae4f8fc866d6d7c2566dd7e.pdf",
-      contractType: "Team",
-      teamName: "Team 1",
-      uploadedBy: "Krishna",
-      recordDate: "2023-06-14",
-      status: "pending",
-      actionBy: "Alice",
-      actionDate: "2023-06-14",
-      comment: "",
-      contractWith:"Ashish"
-    },
-    {
-
-      contractFile:
-        "87ca35fb9232e51828be8db983076562394c37172ae4f8fc866d6d7c2566dd7e.pdf",
-      contractType: "Player",
-      playerName: "Team 2",
-      teamName: "Team1",
-      uploadedBy: "Krishna",
-      recordDate: "2023-06-14",
-      status: "Pending",
-      actionBy: "Bob ",
-      actionDate: "2023-06-14",
-      comment: "",
-      contractWith:"Ashish"
-    },
-  ];
+  // var data1 =  await GetData();    
+  //  res.json(data1);;
 
   // res.json({
   //   message: `file retrieve successfully`,
@@ -307,27 +275,27 @@ app.post("/updateContractStatus", (req, res) => {
   let current = new Date();
   const actionDate = current.toISOString().slice(0,10);
 
-  // client.db(dbName).collection('ContractDetails').updateOne( 
-  //   { "contractID": req.body.contractId },
-  //     { $set: { "status":  req.body.status,"actionBy": req.body.actionBy,'actionDate':actionDate,'comment':req.body.comment } })
-  // .then((result) => {
-  //   if (result.modifiedCount > 0) {
-  //     res.status(200).json({ message: "Contract Status updated successfully"  });
-  //   } else {
-  //     res.status(404).send('contract not found');
-  //   }
-  // })
-  // .catch((error) => {
-  //   console.error('Error updating record:', error);
-  //   res.status(500).send('Internal Server Error');
-  // });
+  client.db(dbName).collection('ContractDetails').updateOne( 
+    { "contractID": req.body.contractId },
+      { $set: { "status":  req.body.status,"actionBy": req.body.actionBy,'actionDate':actionDate,'comment':req.body.comment } })
+  .then((result) => {
+    if (result.modifiedCount > 0) {
+      res.status(200).json({ message: "Contract Status updated successfully"  });
+    } else {
+      res.status(404).send('contract not found');
+    }
+  })
+  .catch((error) => {
+    console.error('Error updating record:', error);
+    res.status(500).send('Internal Server Error');
+  });
   const contractDetails = req.body;
   console.log("*********req.body",contractDetails);
-  approveStatus(actionDate,contractDetails);
+  //approveStatus(actionDate,contractDetails);
  
-  res.json({
-    message: `Contract status updated successfully.`,
-  });
+  // res.json({
+  //   message: `Contract status updated successfully.`,
+  // });
 });
 
 /*******************************************************************************/
@@ -343,7 +311,7 @@ app.get("/fetchContract/:filename", (req, res) => {
   const filePath = path.join(__dirname, "uploads", filename);
   console.log("filePath : ", filePath);
   if (fs.existsSync(filePath)) {
-    const fileData = fs.readFileSync(filePath+'.pdf', "utf-8");
+    const fileData = fs.readFileSync(filePath, "utf-8");
     res.json({ fileData });
   } else {
     res.status(404).json({ error: "File not found" });
@@ -363,8 +331,8 @@ console.log('$$$$$$$$$$');
     contractJson = JSON.stringify(contractDetails);
     console.log(contractJson);
     console.log(contractID);
-    const contract = await blockchainUtils.createInstance('User1','teamcontractCC');
-    const bufferResponse = await contract.submitTransaction('AddTeamContract',contractID.toString('utf-8'), contractJson);
+    //const contract = await blockchainUtils.createInstance('User1','teamcontractCC');
+    //const bufferResponse = await contract.submitTransaction('AddTeamContract',contractID.toString('utf-8'), contractJson);
     console.log("bufferResponse*****************",bufferResponse);
   } catch (error) {
     console.log("error", error);
@@ -477,11 +445,7 @@ async function GetData(){
   const allData = JSON.stringify(jsonArray);
  // console.log("Keys", data.Id)
   return allData;
-
-
 }
-
-
 app.delete('/deleteAllContractDetails', (req, res) => {
   // Delete all records in the collection
   client.db(dbName).collection('ContractDetails')

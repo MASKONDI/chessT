@@ -29,13 +29,13 @@ class BlockchainUtils {
     await this.enrollAdmin();
     await this.registerUser(user);
 
-    const discoveryEnabled = process.env.DISCOVERY_ENABLED;
-    const discoveryAsLocalhost = process.env.DISCOVERY_AS_LOCALHOST;
+    const discoveryEnabled = true;
+    const discoveryAsLocalhost = false;
    
 
     // switch (requestType) {
     //   case "record":
-    let  channelName = process.env.RECORD_CHANNEL_NAME;
+    let  channelName = 'chesst-channel';
     let  chaincode = requestType;
     //     break;
     //   /*

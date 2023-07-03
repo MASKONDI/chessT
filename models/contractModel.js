@@ -29,7 +29,7 @@ const contractSchema = new mongoose.Schema({
   recordDate: { type: Date },
   is_active: { type: Boolean, default: true },
   is_contract_fabricated: { type: Boolean, default: false },
-  contract_last_verified:{type: Date},
+  contract_last_verified:{type: Date,default: Date.now},
 });
 
 const Contract = mongoose.model('Contract', contractSchema);

@@ -50,7 +50,7 @@ let contractID;
 
 
 const storage = multer.diskStorage({
-  destination: "./uploads",
+  destination: "/home/ubuntu/gclproject/gclfrontendv1/public/uploads/",
   filename: (req, file, cb) => {
     // Generate a unique filename using a hash
     if (file.mimetype == "application/pdf") {
@@ -59,7 +59,7 @@ const storage = multer.diskStorage({
         .update(file.originalname)
         .digest("hex");
       const ext = path.extname(file.originalname);
-      const filename = `${hash}`;
+      const filename = `${hash+'.pdf'}`;
       cb(null, filename);
     } else {
       cb("Error: Only PDF files are allowed");
@@ -136,7 +136,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
       contractID:contractID,
       contractFile:contractFile,
       contractType:req.body.contractType,
-      sponserName:req.body.sponserName,
+      sponsorsName:req.body.sponserName,
       contractWith:req.body.contractWith,
       uploadedBy:req.body.uploadedBy,
       recordDate:req.body.recordDate,
@@ -253,12 +253,12 @@ app.get("/contractList", async (req, res) => {
   //************query to fetch all */
 
   var data1 =  await GetData();    
-   res.json(data1);;
-
-  res.json({
-    message: `file retrieve successfully`,
-    contractList: contractList,
-  });
+   res.json(data1);
+   
+  //res.json({
+   // message: `file retrieve successfully`,
+    //contractList: data1
+  //});
 });
 
 
@@ -331,7 +331,7 @@ console.log('$$$$$$$$$$');
     contractJson = JSON.stringify(contractDetails);
     console.log(contractJson);
     console.log(contractID);
-    const contract = await blockchainUtils.createInstance('User1','teamcontractCC');
+    const contract = await blockchainUtils.createInstance('User2','teamcontractCC');
     const bufferResponse = await contract.submitTransaction('AddTeamContract',contractID.toString('utf-8'), contractJson);
     console.log("bufferResponse*****************",bufferResponse);
   } catch (error) {
@@ -343,7 +343,7 @@ async function addPlayerContract(contractDetails) {
 
   try {
     contractJson = JSON.stringify(contractDetails);
-    const contract = await blockchainUtils.createInstance('User1','playercontractCC');
+    const contract = await blockchainUtils.createInstance('User2','playercontractCC');
     const bufferResponse = await contract.submitTransaction('AddPlayerContract',contractID.toString('utf-8'), contractJson);
   } catch (error) {
     console.log("error", error);
@@ -355,7 +355,7 @@ async function addSponserContract(contractDetails) {
     contractJson = JSON.stringify(contractDetails);
     console.log(contractJson);
     console.log(contractID);
-    const contract = await blockchainUtils.createInstance('User1','sponsercontractCC');
+    const contract = await blockchainUtils.createInstance('User2','sponsercontractCC');
     const bufferResponse = await contract.submitTransaction('AddSponserContract',contractID.toString('utf-8'), contractJson);;
   } catch (error) {
     console.log("error", error);
@@ -367,7 +367,7 @@ async function addVendorContract(contractDetails) {
     contractJson = JSON.stringify(contractDetails);
     console.log(contractJson);
     console.log(contractID);
-    const contract = await blockchainUtils.createInstance('User1','vendorcontractCC');
+    const contract = await blockchainUtils.createInstance('User2','vendorcontractCC');
     const bufferResponse = await contract.submitTransaction('AddVendorContract',contractID.toString('utf-8'), contractJson);
   } catch (error) {
     console.log("error", error);
@@ -386,32 +386,35 @@ async function approveStatus(actionDate, contractDetails) {
   console.log("contractStatus,contractId,actionBy,comment",contractDetails,actionDate);
   if(contractDetails.contractType == "Team"){
     try {
-      const contract = await blockchainUtils.createInstance('User1','teamcontractCC');
-      await contract.submitTransaction('ApproveTeamContract',contractDetails.contractId.toString('utf-8'),contractDetails.contractStatus.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate, contractDetails.comment.toString('utf-8'));
+      const contract = await blockchainUtils.createInstance('User2','teamcontractCC');
+      await contract.submitTransaction('ApproveTeamContract',contractDetails.contractId.toString('utf-8'),contractDetails.status.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate.toString('utf-8'), contractDetails.comment.toString('utf-8'));
     } catch (error) {
       console.log("error", error);
     }
   }
   if(contractDetails.contractType == "Sponser"){
     try {
-      const contract = await blockchainUtils.createInstance('User1','sponsercontractCC');
-      await contract.submitTransaction('ApproveSponserContract',contractDetails.contractId.toString('utf-8'),contractDetails.contractStatus.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate, contractDetails.comment.toString('utf-8'));
+      const contract = await blockchainUtils.createInstance('User2','sponsercontractCC');
+      await contract.submitTransaction('ApproveSponserContract',contractDetails.contractId.toString('utf-8'),contractDetails.status.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate.toString('utf-8'), contractDetails.comment.toString('utf-8'));
     } catch (error) {
       console.log("error", error);
     }
   }
+  console.log("**************ABCD***************",contractDetails.contractType)
   if(contractDetails.contractType == "Player"){
+	  console.log(contractDetails)
     try {
-      const contract = await blockchainUtils.createInstance('User1','playercontractCC');
-      await contract.submitTransaction('ApprovePlayerContract',contractDetails.contractId.toString('utf-8'),contractDetails.contractStatus.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate, contractDetails.comment.toString('utf-8'));
-    } catch (error) {
+      const contract = await blockchainUtils.createInstance('User2','playercontractCC');
+      const txresult = await contract.submitTransaction('ApprovePlayerContract',contractDetails.contractId.toString('utf-8'),contractDetails.status.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate.toString('utf-8'), contractDetails.comment.toString('utf-8'));
+    console.log(txresult)
+	} catch (error) {
       console.log("error", error);
     }
   }
   if(contractDetails.contractType == "Vendor"){
     try {
-      const contract = await blockchainUtils.createInstance('User1','vendorcontractCC');
-      await contract.submitTransaction('ApproveVendorContract',contractDetails.contractId.toString('utf-8'),contractDetails.contractStatus.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate, contractDetails.comment.toString('utf-8'));
+      const contract = await blockchainUtils.createInstance('User2','vendorcontractCC');
+      await contract.submitTransaction('ApproveVendorContract',contractDetails.contractId.toString('utf-8'),contractDetails.status.toString('utf-8'), contractDetails.actionBy.toString('utf-8'), actionDate.toString('utf-8'), contractDetails.comment.toString('utf-8'));
     } catch (error) {
       console.log("error", error);
     }
@@ -421,35 +424,36 @@ async function approveStatus(actionDate, contractDetails) {
 
 async function GetData(){
   
-  const teamcontract = await blockchainUtils.createInstance('User1','teamcontractCC');
+  const teamcontract = await blockchainUtils.createInstance('User2','teamcontractCC');
   const teamHlfResponse = await teamcontract.evaluateTransaction('GetAllContract');
-  console.log("bufferResponse", teamHlfResponse);
-  var teamData = JSON.parse(hlfResponse.toString('utf-8'));
-
-  const playercontract = await blockchainUtils.createInstance('User1','playercontractCC');
+  //console.log("bufferResponse", teamHlfResponse);
+  var teamData = JSON.parse(teamHlfResponse);
+  
+  //console.log("bufferResponse", teamData);
+  console.log("inside get data");
+  const playercontract = await blockchainUtils.createInstance('User2','playercontractCC');
   const playerHlfResponse = await playercontract.evaluateTransaction('GetAllContract');
-  //console.log("bufferResponse", hlfResponse);
-  var playerData = JSON.parse(playerHlfResponse.toString('utf-8'));
-
-  const sponserContract = await blockchainUtils.createInstance('User1','sponsercontractCC');
+  //console.log("bufferResponse", playerHlfResponse);
+  var playerData = JSON.parse(playerHlfResponse);
+  console.log(playerData);
+  const sponserContract = await blockchainUtils.createInstance('User2','sponsercontractCC');
   const sponserHlfResponse = await sponserContract.evaluateTransaction('GetAllContract');
   //console.log("bufferResponse", hlfResponse);
-  var sponserData = JSON.parse(sponserHlfResponse.toString('utf-8'));
+  var sponserData = JSON.parse(sponserHlfResponse);
 
-  const vendorcontract = await blockchainUtils.createInstance('User1','vendorcontractCC');
+  const vendorcontract = await blockchainUtils.createInstance('User2','vendorcontractCC');
   const vendorHlfResponse = await vendorcontract.evaluateTransaction('GetAllContract');
   //console.log("bufferResponse", hlfResponse);
-  var vendorData = JSON.parse(vendorHlfResponse.toString('utf-8'));
+  var vendorData = JSON.parse(vendorHlfResponse);
  
-  const jsonArray = [teamData, playerData,sponserData,vendorData];
-  const allData = JSON.stringify(jsonArray);
- // console.log("Keys", data.Id)
-  return allData;
+const data =  playerData.concat(teamData,sponserData,vendorData);	//console.log(jsonArray);
+ console.log("Keys", data)
+  return data;
 }
 app.delete('/deleteAllContractDetails', (req, res) => {
   // Delete all records in the collection
   // client.db(dbName).collection('ContractDetails')
-  //   .deleteMany({})
+  //   .deleteMany({
   //   .then((result) => {
   //     res.status(200).send(`Deleted ${result.deletedCount} records`);
   //   })

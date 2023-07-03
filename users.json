@@ -1,23 +1,23 @@
 [
     {
-    "username": "nalin",
+    "username": "user",
     "password": "1234",
     "role": "user",
-    "fullname":"nalinuser",
+    "fullname":"User",
     "access" : "R"
 },
 {
     "username": "pmo",
     "password": "1234",
     "role": "pmo",
-    "fullname":"nalinPMO",
+    "fullname":"PMO",
     "access" : "UR"
 },
 {
     "username": "admin",
     "password": "1234",
     "role": "admin",
-    "fullname":"Nalin-admin",
+    "fullname":"Admin",
     "access" : "URAR"
 }
 ]

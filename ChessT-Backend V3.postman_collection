@@ -1,0 +1,643 @@
+{
+	"info": {
+		"_postman_id": "68649535-b4b3-4157-b303-5aacc77e9d9c",
+		"name": "ChessT-Backend Copy 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5428896"
+	},
+	"item": [
+		{
+			"name": "createContracts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/TechM Project/ChessMenia/Players Contract - WGS 2021.pdf"
+						},
+						{
+							"key": "contract_type",
+							"value": "Player",
+							"type": "text"
+						},
+						{
+							"key": "team_name",
+							"value": "Balan Alaskan Knights",
+							"type": "text"
+						},
+						{
+							"key": "uploaded_by",
+							"value": "PMO",
+							"type": "text"
+						},
+						{
+							"key": "recordDate",
+							"value": "2023-06-21T00:00:00.000Z",
+							"type": "text"
+						},
+						{
+							"key": "contract_status",
+							"value": "pending",
+							"type": "text"
+						},
+						{
+							"key": "action_by",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "action_date",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "contract_comment",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "contract_with",
+							"value": "Ian Nepomniachtchi",
+							"type": "text"
+						},
+						{
+							"key": "player_name",
+							"value": "Ian Nepomniachtchi",
+							"type": "text"
+						},
+						{
+							"key": "sponsor_name",
+							"value": "Tech Mahindra",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vendor_name",
+							"value": "Pepsico",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "season_year",
+							"value": "2023",
+							"type": "text"
+						},
+						{
+							"key": "contract_with_emailId",
+							"value": "xyz@domain.com",
+							"type": "text"
+						},
+						{
+							"key": "contract_with_contact_number",
+							"value": "123456789",
+							"type": "text"
+						},
+						{
+							"key": "contract_from_emailId",
+							"value": "abc@example.com",
+							"type": "text"
+						},
+						{
+							"key": "contract_from_contact_number",
+							"value": "123456789",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/createContracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"createContracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetchContract",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/fetchContract/73e76daf22150b2e4683189496dc01c3bc4d4aa825d8edac170548320b2b39f4.docx",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetchContract",
+						"73e76daf22150b2e4683189496dc01c3bc4d4aa825d8edac170548320b2b39f4.docx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"pmo\",\r\n    \"password\":\"1234\",\r\n    \"role\":\"pmo\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPlayerList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTeamsList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getTeamsList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getTeamsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"user_id\": \"1\",\r\n\"user_name\": \"admin\",\r\n\"email_id\": \"admin@example.com\",\r\n\"password\": \"1234\",\r\n\"full_name\": \"ADMIN \",\r\n\"role\": \"admin\",\r\n\"access\": \"URAR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addteam",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"team_id\": 1,\r\n  \"team_name\": \"Ganges Grandmaster\",\r\n  \"email_id\": \"gangesgrandmaster@example.com\",\r\n  \"team_owner_name\": \"Ganges\",\r\n  \"team_logo\": \"/public/image.logo\",\r\n  \"no_of_players\": 6,\r\n  \"phone_number\": \"1234567890\",\r\n  \"is_active\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addteam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addteam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addplayer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"player_id\": 5,\r\n  \"player_name\": \"Ian Nepomniachtchi\",\r\n  \"player_image\": \"/player_image_path\",\r\n  \"is_active\": true,\r\n  \"email_id\": \"Ian Nepomniachtchi@example.com\",\r\n  \"phone_number\": \"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addplayer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addplayer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addvendor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vendor_id\": 1,\r\n  \"vendor_name\": \"Pepsico\",\r\n  \"is_active\": true,\r\n  \"email_id\": \"pepsico@example.com\",\r\n  \"phone_number\": \"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addvendor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addvendor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addseason",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"season_id\": 1,\r\n  \"season_name\": \"TechM GCL\",\r\n  \"season_year\": 2023,\r\n  \"season_admin_email\": \"admin@example.com\",\r\n  \"season_admin_contact_number\": \"1234567890\",\r\n  \"season_start_date\": \"2023-06-21\",\r\n  \"season_end_date\": \"2023-07-31\",\r\n  \"created_at\": \"2023-06-26T10:00:00Z\",\r\n  \"updated_at\": null,\r\n  \"deleted_at\": null,\r\n  \"is_active\": true,\r\n  \"team_ids\": [\"649bbc383d33480b66980ffd\"],\r\n  \"vendor_ids\": [\"649bbcc73d33480b66981005\"],\r\n  \"sponsor_ids\": [\"649bbcca3d33480b66981007\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addseasons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addseasons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addsponsor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sponsor_id\": 1,\r\n  \"sponsor_name\": \"Tech Mahindra\",\r\n  \"is_active\": true,\r\n  \"email_id\": \"techm@example.com\",\r\n  \"phone_number\": \"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addsponsor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addsponsor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddTeamsPlayerList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teams_player_id\": \"1\",\r\n  \"team_id\": \"649bbc383d33480b66980ffd\",\r\n  \"player_id\": [\"649bbc613d33480b66980fff\",\"649bbc803d33480b66981001\",\"649bbcb53d33480b66981003\"],\r\n  \"season_id\": \"649bbdd13d33480b66981009\",\r\n  \"created_at\": \"2023-06-27T12:00:00Z\",\r\n  \"is_active\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addTeamPlayerList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addTeamPlayerList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTeamPlayerListByTeamIDSeasonId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/getTeamplayersByTeamIdSeasonId/649aa435b9192571af399cfb/649aa47db9192571af399d01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getTeamplayersByTeamIdSeasonId",
+						"649aa435b9192571af399cfb",
+						"649aa47db9192571af399d01"
+					],
+					"query": [
+						{
+							"key": "teamId",
+							"value": "649a8e26083b3d86d3f54a5e",
+							"disabled": true
+						},
+						{
+							"key": "seasonId",
+							"value": "649a8ebb083b3d86d3f54a66",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPlayerById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getPlayerById/649a73310d4ddb5d7e668607",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getPlayerById",
+						"649a73310d4ddb5d7e668607"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeasonByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getSeasonById/649a9e517a7ab5b41ec69601",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getSeasonById",
+						"649a9e517a7ab5b41ec69601"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeasonList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/getSeasonsList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getSeasonsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTeamById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getSeasonsList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getSeasonsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCollections",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/deletecollections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deletecollections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchContracts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/searchcontracts?startDate=2023-06-29&endDate=2023-06-29",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"searchcontracts"
+					],
+					"query": [
+						{
+							"key": "season",
+							"value": "2023",
+							"disabled": true
+						},
+						{
+							"key": "contract_status",
+							"value": "app",
+							"disabled": true
+						},
+						{
+							"key": "startDate",
+							"value": "2023-06-29"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-06-29"
+						},
+						{
+							"key": "created_by",
+							"value": "PMO",
+							"disabled": true
+						},
+						{
+							"key": "contract_with",
+							"value": "GCL Admin",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateContractStatus",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contract_type\":\"Vendor\",\r\n    \"contract_status\":\"rejected\",\r\n    \"action_by\":\"Admin\",\r\n    \"action_date\":\"2023-06-28T00:00:00.000+00:00\",\r\n    \"contract_comment\":\"Unaccepted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/updateContracts/649bce7d849a46db77d98ed7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updateContracts",
+						"649bce7d849a46db77d98ed7"
+					],
+					"query": [
+						{
+							"key": "contract_id",
+							"value": "649bce31849a46db77d98ed3",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

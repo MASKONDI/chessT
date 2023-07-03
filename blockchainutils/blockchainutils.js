@@ -67,15 +67,18 @@ class BlockchainUtils {
           `An identity for the user ${user} does not exist in the wallet`
         );
       }
-
+	//console.log("*************************",ccp);
+	    //console.log("******************",identity);
       // Create a new gateway for connecting to our peer node.
       await this.gateway.connect(ccp, {
         wallet,
         identity: user,
         discovery: {
           enabled: discoveryEnabled,
-          asLocalhost: discoveryAsLocalhost,
-        },
+          asLocalhost: discoveryAsLocalhost
+	},
+	  url:'grpcs://nd-j3nnlnadyvclbonjwtvyhxipu4.m-qsaws6vsknceje6dy3d33t7x2y.n-d3kz7ntvebc4xfimky4v3mpntm.managedblockchain.us-east-1.amazonaws.com:30003'
+        
       });
 
       // Get the network (channel) our contract is deployed to.

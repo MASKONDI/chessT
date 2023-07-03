@@ -40,7 +40,8 @@
         "tlsCACerts": {
           "path": "/home/ubuntu/amb-fabric-config/managedblockchain-tls-chain.pem"
       }
-    },
+    }
+	},
     "channels": {
       "chesst-channel": {
         "orderers": [
@@ -56,4 +57,3 @@
       }
     }
   }
-}
